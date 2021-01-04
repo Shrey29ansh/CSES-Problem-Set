@@ -1,13 +1,36 @@
+/*
+Problem:
+You have two coin piles containing a and b coins. On each move, you can either remove one coin from the
+left pile and two coins from the right pile, or two coins from the left pile and one coin from the right 
+pile. Your task is to efficiently find out if you can empty both the piles.
+
+Input:
+The first input line has an integer t: the number of tests.
+After this, there are t lines, each of which has two integers a and b: the numbers of coins in the piles.
+
+Output
+For each test, print "YES" if you can empty the piles and "NO" otherwise.
+
+Example
+Input:
+3
+2 1
+2 2
+3 3
+
+Output:
+YES
+NO
+YES
+*/
+
 #include<iostream>
-#include<cstdlib>	
-#include<math.h> 
-#include<stdlib.h>
 using namespace std;
 int main()
 {
-	long test=0,i=0,x=0,temp1,temp2;
+	long test=0,i=0,x=0,mytemp=0,max,min;
 	cin>>test;
-	long a[test],b[test],j=0;
+	long a[test],b[test];
 	for(i=0;i<test;i++)
 	{
 		cin>>a[i];
@@ -15,28 +38,21 @@ int main()
 	}
 	for(i=0;i<test;i++)
 	{
-		j=0;
-		while(true)
-		{
-			x=1-(j%2)*3;
-			x=abs(x);
-			temp1=a[i]-x;
-			x = x+pow(-1,j);
-			temp2=b[i]-x;
-			j++;	
-			if(temp1<=0 || temp2<=0)
-				break;	
-			else
-			{
-				a[i]=temp1;
-				b[i]=temp2;
-			}
-		}
-		//cout<<a[i]<<" "<<b[i];
-		if(a[i]==b[i])		
-			cout<<"YES\n";
-		else
+		x=a[i]/2; // no of lines = x+1	
+		mytemp=a[i]%2; 
+		min=x+2*mytemp; // first number
+		max= min + x*3;
+		if(b[i]<min || b[i]>max)
 			cout<<"NO\n";
+		else
+		{
+			x=b[i]-min;
+			if(x%3==0)
+				cout<<"YES\n";
+			else
+				cout<<"NO\n";
+		}
 
 	}
 }
+
