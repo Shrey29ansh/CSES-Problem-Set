@@ -4,10 +4,11 @@ using namespace std;
 int main()
 {
 	string str1,str2;
-	long i,j,k=0,length,count,m,LOOP;
+	char temp;
+	long i,j,k=0,length,count,m,LOOP,my=1,mycount=0;
 	cin>>str1;
 	length = str1.length();
-	count = length;
+	//count = length;
 	LOOP = length;
 	if(length<=2)
 		cout<<str1;	
@@ -20,21 +21,25 @@ int main()
 					for(m=j;m<length;m++)
 						str1[m]=str1[m+1];
 					length--;
-					count=count-2;
+					//count=count-2;
+					my=0;
 					k++;
 					break;
-				}
-				else{
-					//cout<<str1[i]<<"\n";
-					//str2[LOOP/2]=str1[i];
-				}
-					
+				}	
+				else
+					my=1;
 			}
+			if(my==1)
+				{
+				mycount++;
+				cout<<str1[i]<<endl;
+				}
 		}
+		cout<<mycount;
 		//cout<<str2[str1.length()/2]<<"\n";
-		if(count<=1){
-			for(i=0;i<str1.length();i++)
-				cout<<str1[i];
+		if(mycount<=1){
+			for(i=0;i<LOOP;i++)
+				cout<<str2[i];
 		}
 		else	
 			cout<<"NO SOLUTION";
